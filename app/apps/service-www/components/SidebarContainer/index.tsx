@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import PriceFilter from '../PriceFilter';
-import BodyPart from '../BodyPart';
+// import BodyPart from '../BodyPart';
 // import StatusSelector from '../StatusSelector';
 import {Typography} from '@mui/material';
 import {currencyOption, durationOption} from '../../constants';
@@ -42,7 +42,7 @@ export default function SidebarContainer() {
       <PriceFilter name={'Price Filter'} option={currencyOption}/>
       <PriceFilter name={'Duration'} option={durationOption}/>
       <Divider sx={{borderColor: 'black'}}/>
-      <BodyPart/>
+      {/* <BodyPart/> */}
       {/*<Divider sx={{ borderColor: 'black' }} />*/}
       {/*<StatusSelector />*/}
     </Box>
