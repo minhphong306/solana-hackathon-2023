@@ -6,6 +6,10 @@ import jwt_decode from "jwt-decode";
 import {removeCookie} from "../../lib/AuthCookies";
 
 export default async function requireUserLogin(context) {
+  return {
+    props: {},
+  };
+
   const cookieData = get(context, 'req.headers.cookie', '');
   const parsedCookies = cookie.parse(cookieData);
   const token = parsedCookies[ACCESS_TOKEN];

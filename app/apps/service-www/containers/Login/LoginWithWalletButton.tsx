@@ -82,65 +82,69 @@ const LoginWithWalletButton = (): JSX.Element => {
       // Encode anything as bytes
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      const message = new TextEncoder().encode(decodedToken.message);
+      // const message = new TextEncoder().encode(decodedToken.message);
 
-      // Sign the bytes using the wallet
-      const signature = await signMessage(message);
+      // // Sign the bytes using the wallet
+      // const signature = await signMessage(message);
 
-      // Verify that the bytes were signed using the private key that matches the known public key
-      if (!sign.detached.verify(message, signature, publicKey.toBytes()))
-        throw new Error('Invalid signature!');
+      // // Verify that the bytes were signed using the private key that matches the known public key
+      // if (!sign.detached.verify(message, signature, publicKey.toBytes()))
+      //   throw new Error('Invalid signature!');
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      await login({
-        variables: {
-          wallet: publicKey.toString(),
-          message: decodedToken.message,
-          signature: bs58.encode(signature),
-        },
-        onCompleted: (data) => {
-          const isWalletLinked = get(
-            data,
-            'signInWithWallet.isWalletLinked',
-            null
-          );
-          const isConfirmed = get(data, 'signInWithWallet.isConfirmed', null);
-          const accessToken = get(data, 'signInWithWallet.accessToken', null);
-          const isDontAskLink = get(
-            data,
-            'signInWithWallet.isDontAskLink',
-            null
-          );
-          const email = get(data, 'signInWithWallet.email', null);
+      // await login({
+      //   variables: {
+      //     wallet: publicKey.toString(),
+      //     message: decodedToken.message,
+      //     signature: bs58.encode(signature),
+      //   },
+      //   onCompleted: (data) => {
+      //     const isWalletLinked = get(
+      //       data,
+      //       'signInWithWallet.isWalletLinked',
+      //       null
+      //     );
+      //     const isConfirmed = get(data, 'signInWithWallet.isConfirmed', null);
+      //     const accessToken = get(data, 'signInWithWallet.accessToken', null);
+      //     const isDontAskLink = get(
+      //       data,
+      //       'signInWithWallet.isDontAskLink',
+      //       null
+      //     );
+      //     const email = get(data, 'signInWithWallet.email', null);
 
-          if (isWalletLinked) {
-            setTokenCookie('isConnected', true);
-          }
+      //     if (isWalletLinked) {
+      //       setTokenCookie('isConnected', true);
+      //     }
 
-          if (!isConfirmed && isWalletLinked) {
-            router.push(
-              {
-                pathname: '/verify',
-                query: {
-                  email,
-                  sendmail: false,
-                },
-              },
-              '/verify'
-            );
-          } else {
-            setTokenCookie(ACCESS_TOKEN, accessToken);
-            if (!isWalletLinked && !isDontAskLink) {
-              router.push('/optionwallet');
-            } else {
-              router.push('/profile/renting?page=1');
-            }
-          }
+      //     if (!isConfirmed && isWalletLinked) {
+      //       router.push(
+      //         {
+      //           pathname: '/verify',
+      //           query: {
+      //             email,
+      //             sendmail: false,
+      //           },
+      //         },
+      //         '/verify'
+      //       );
+      //     } else {
+      //       setTokenCookie(ACCESS_TOKEN, accessToken);
+      //       if (!isWalletLinked && !isDontAskLink) {
+      //         router.push('/optionwallet');
+      //       } else {
+      //         router.push('/profile/renting?page=1');
+      //       }
+      //     }
 
-          enqueueSnackbar('Login success', { variant: 'success' });
-        },
-      });
+      //     enqueueSnackbar('Login success', { variant: 'success' });
+      //   },
+      // });
+
+      router.push('/profile/renting?page=1');
+      enqueueSnackbar('Login success', { variant: 'success' });
+
     } catch (error) {
       disconnect();
       enqueueSnackbar(error.message, { variant: 'error' });
