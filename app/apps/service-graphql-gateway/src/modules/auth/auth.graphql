@@ -1,0 +1,136 @@
+input LinkWalletInput {
+  wallet: String!
+}
+
+input SignInWithWalletInput {
+  wallet: String!
+  message: String!
+  signature: String!
+}
+
+input SignInWithAccountInput {
+  username: String!
+  password: String!
+}
+
+input ResendCodeInput {
+  email: String!
+}
+
+type ResendCodeResponse {
+  isSent: Boolean!
+}
+
+input SignUpAccountInput {
+  username: String!
+  password: String!
+}
+
+type SignUpAccountResponse {
+  accessToken: String
+}
+
+input SignUpWithWalletInput {
+  username: String!
+  password: String!
+}
+
+input ConfirmEmailInput {
+  email: String!
+  code: String!
+}
+
+input ChangePasswordInput {
+  currentPassword: String!
+  newPassword: String!
+}
+
+input ChangeUsernameInput {
+  username: String!
+}
+
+type ChangeUsernameResponse {
+  accessToken: String
+}
+
+type ChangePasswordResponse {
+  accessToken: String
+}
+
+type SignInWithWalletResponse {
+  isWalletLinked: Boolean!
+  isDontAskLink: Boolean!
+  accessToken: String
+  email: String
+  isConfirmed: Boolean!
+}
+
+type ProfileInfoResponse {
+  walletAddress: String!
+  nickname: String!
+  email: String
+  isWalletLinked: Boolean
+  isEmailConfirmed: Boolean
+  isChangedNickName: Boolean
+}
+
+type SignInWithAccountResponse {
+  isWalletLinked: Boolean
+  isConfirmed: Boolean
+  accessToken: String
+}
+
+type SignUpWithWalletResponse {
+  cognitoUserId: String
+}
+
+type ConfirmEmailResponse {
+  accessToken: String
+}
+
+input ForgotPasswordInput {
+  email: String!
+}
+
+type ForgotPasswordResponse {
+  isSent: Boolean!
+}
+
+input ConfirmForgotPasswordInput {
+  email: String!
+  password: String!
+  code: String!
+}
+
+type ConfirmForgotPasswordResponse {
+  isSet: Boolean!
+}
+
+input GetSignedMessageInput {
+  message: String
+  privateKey: String
+}
+
+type GetSignedMessageResponse {
+  message: String
+}
+
+type Query {
+  profileInfo: ProfileInfoResponse
+}
+
+type Mutation {
+  dontAskAgain: Boolean
+  createRandomMessage: String
+  linkWallet(linkInput: LinkWalletInput!): Boolean
+  signUpWithWallet(input: SignUpWithWalletInput): SignUpWithWalletResponse
+  confirmEmail(input: ConfirmEmailInput): ConfirmEmailResponse
+  getSignedMessage(input: GetSignedMessageInput): GetSignedMessageResponse
+  changePassword(input: ChangePasswordInput): ChangePasswordResponse
+  changeUsername(input: ChangeUsernameInput): ChangeUsernameResponse
+  confirmForgotPassword(input: ConfirmForgotPasswordInput): ConfirmForgotPasswordResponse
+  forgotPassword(input: ForgotPasswordInput): ForgotPasswordResponse
+  signInWithAccount(input: SignInWithAccountInput): SignInWithAccountResponse
+  signInWithWallet(input: SignInWithWalletInput): SignInWithWalletResponse
+  resendConfirmationCode(input: ResendCodeInput): ResendCodeResponse
+}

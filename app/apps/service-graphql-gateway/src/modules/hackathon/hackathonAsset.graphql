@@ -1,0 +1,134 @@
+input HackathonRentingFilter {
+  min: Float
+  max: Float
+}
+
+input HackathonRentingInput {
+  price: HackathonRentingFilter
+  type: Int
+  subType: Int
+  tier: Int
+  rentTime: HackathonRentingFilter
+  search: String
+  limit: Int
+  page: Int
+  order: String,
+  orderBy: Int
+}
+
+input InventoryInput {
+  price: HackathonRentingFilter
+  type: Int
+  subType: Int
+  tier: Int
+  rentTime: HackathonRentingFilter
+  search: String
+  limit: Int
+  page: Int
+  order: String,
+  orderBy: Int
+  status: Int
+}
+
+type HackathonInventoryEntity {
+  id: Int
+  nftAddress: String
+  name: String
+  description: String
+  image: String
+  type: Int
+  subtype: Int
+  tier: Int
+  attributes: String
+  price: Float
+  numberOfDay: Int
+  startTime: Int
+  rentUserId: String
+  isMyItem: Boolean
+  isListing: Boolean
+  owner: String
+  isRenting: Boolean
+}
+
+type HackathonAssetEntity {
+  id: Int
+  nftAddress: String
+  name: String
+  description: String
+  image: String
+  type: Int
+  subtype: Int
+  tier: Int
+  attributes: String
+  price: Float
+  numberOfDay: Int
+  isMyItem: Boolean
+  isListing: Boolean
+  totalCount: Int
+  rentUserId: String
+  createdAt: Date
+  updatedAt: Date
+}
+
+type HackathonRentingHistory {
+  type: String
+  price: Float
+  numberOfDay: Int
+  ownerUserId: String
+  ownerUserName: String
+  rentUserId: String
+  rentUserName: String
+  createdAt: Int
+}
+
+input ListRentingAssetInput {
+  tx: String
+  price: Float
+  numberOfDay: Int
+  isContinueListing: Boolean,
+  nftAddress: String
+}
+
+input CancelRentingInput {
+  tx: String
+  nft: String
+}
+
+input UpdateRentingAssetInput {
+  tx: String
+  nft: String
+  price: Float
+  numberOfDay: Int
+  isContinueListing: Boolean
+}
+
+input RentRentingAssetInput {
+  tx: String
+  nft: String
+}
+
+type RentingListRes {
+  total: Int!
+  data: [HackathonAssetEntity]
+}
+
+type InventoryRes {
+  total: Int!
+  data: [HackathonInventoryEntity]
+}
+
+type Query {
+  rentingList(input: HackathonRentingInput): RentingListRes
+  rentingDetail(nft: String): HackathonAssetEntity
+  rentingHistory(nft: String): [HackathonRentingHistory]
+  inventoryDetail(nft: String): HackathonInventoryEntity!
+  inventory(input: InventoryInput): InventoryRes
+  getTxInfo(tx: String): String
+}
+
+type Mutation {
+  listRentingAsset(input: ListRentingAssetInput): Boolean
+  cancelRentingAsset(input: CancelRentingInput): Boolean
+  updateRentingAsset(input: UpdateRentingAssetInput): Boolean
+  rentRentingAsset(input: RentRentingAssetInput): Boolean
+}

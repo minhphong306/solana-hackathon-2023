@@ -1,0 +1,10 @@
+{
+  "name": "ui-next-apollo-react-component",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "react-cookie": "^4.0.3"
+  },
+  "peerDependencies": {},
+  "dependencies": {}
+}

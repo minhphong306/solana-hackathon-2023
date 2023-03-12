@@ -1,0 +1,400 @@
+{
+  "version": 2,
+  "projects": {
+    "data-access-constants": {
+      "root": "libs/data-access-constants",
+      "sourceRoot": "libs/data-access-constants/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/data-access-constants/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-access-constants"],
+          "options": {
+            "jestConfig": "libs/data-access-constants/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-migrate-mongoose": {
+      "root": "libs/data-access-migrate-mongoose",
+      "sourceRoot": "libs/data-access-migrate-mongoose/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/data-access-migrate-mongoose/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-access-migrate-mongoose"],
+          "options": {
+            "jestConfig": "libs/data-access-migrate-mongoose/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/data-access-migrate-mongoose",
+            "tsConfig": "libs/data-access-migrate-mongoose/tsconfig.lib.json",
+            "packageJson": "libs/data-access-migrate-mongoose/package.json",
+            "main": "libs/data-access-migrate-mongoose/src/index.ts",
+            "assets": ["libs/data-access-migrate-mongoose/*.md"]
+          }
+        }
+      }
+    },
+    "data-access-nest-auth-module": {
+      "root": "libs/data-access-nest-auth-module",
+      "sourceRoot": "libs/data-access-nest-auth-module/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/data-access-nest-auth-module/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-access-nest-auth-module"],
+          "options": {
+            "jestConfig": "libs/data-access-nest-auth-module/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "master-server": {
+      "root": "apps/master-server",
+      "sourceRoot": "apps/master-server/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/master-server",
+            "main": "apps/master-server/src/main.ts",
+            "tsConfig": "apps/master-server/tsconfig.app.json",
+            "assets": ["apps/master-server/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/master-server/src/environments/environment.ts",
+                  "with": "apps/master-server/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "master-server:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/master-server/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/master-server"],
+          "options": {
+            "jestConfig": "apps/master-server/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "service-www": {
+      "root": "apps/service-www",
+      "sourceRoot": "apps/service-www",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/next:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "root": "apps/service-www",
+            "outputPath": "dist/apps/service-www"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "service-www:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "service-www:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "executor": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "service-www:build:production"
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/service-www"],
+          "options": {
+            "jestConfig": "apps/service-www/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/service-www/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      }
+    },
+    "service-www-e2e": {
+      "root": "apps/service-www-e2e",
+      "sourceRoot": "apps/service-www-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/service-www-e2e/cypress.json",
+            "devServerTarget": "service-www:serve",
+            "tsConfig": "apps/service-www-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "service-www:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/service-www-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "ui-ga-auto-event-listener": {
+      "root": "libs/ui-ga-auto-event-listener",
+      "sourceRoot": "libs/ui-ga-auto-event-listener/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-ga-auto-event-listener/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui-ga-auto-event-listener"],
+          "options": {
+            "jestConfig": "libs/ui-ga-auto-event-listener/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-material-ui-next-global": {
+      "root": "libs/ui-material-ui-next-global",
+      "sourceRoot": "libs/ui-material-ui-next-global/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-material-ui-next-global/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui-material-ui-next-global"],
+          "options": {
+            "jestConfig": "libs/ui-material-ui-next-global/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-next-apollo-react-component": {
+      "root": "libs/ui-next-apollo-react-component",
+      "sourceRoot": "libs/ui-next-apollo-react-component/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-next-apollo-react-component/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui-next-apollo-react-component"],
+          "options": {
+            "jestConfig": "libs/ui-next-apollo-react-component/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-next-roboto-meta-tag": {
+      "root": "libs/ui-next-roboto-meta-tag",
+      "sourceRoot": "libs/ui-next-roboto-meta-tag/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-next-roboto-meta-tag/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui-next-roboto-meta-tag"],
+          "options": {
+            "jestConfig": "libs/ui-next-roboto-meta-tag/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-penguin-ui-material-ui-extension": {
+      "root": "libs/ui-penguin-ui-material-ui-extension",
+      "sourceRoot": "libs/ui-penguin-ui-material-ui-extension/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-penguin-ui-material-ui-extension/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui-penguin-ui-material-ui-extension"],
+          "options": {
+            "jestConfig": "libs/ui-penguin-ui-material-ui-extension/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "host": "0.0.0.0",
+            "config": {
+              "configFolder": "libs/ui-penguin-ui-material-ui-extension/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/ui-penguin-ui-material-ui-extension",
+            "config": {
+              "configFolder": "libs/ui-penguin-ui-material-ui-extension/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "util-apollo-cursor-style-pagination": {
+      "root": "libs/util-apollo-cursor-style-pagination",
+      "sourceRoot": "libs/util-apollo-cursor-style-pagination/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/util-apollo-cursor-style-pagination/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/util-apollo-cursor-style-pagination"],
+          "options": {
+            "jestConfig": "libs/util-apollo-cursor-style-pagination/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "utils-nest-parse-objectid-pipe": {
+      "root": "libs/utils-nest-parse-objectid-pipe",
+      "sourceRoot": "libs/utils-nest-parse-objectid-pipe/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/utils-nest-parse-objectid-pipe/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils-nest-parse-objectid-pipe"],
+          "options": {
+            "jestConfig": "libs/utils-nest-parse-objectid-pipe/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+# scalar types
+scalar Date
+scalar ObjectId
+scalar JSON
+scalar JSONObject
+
+# directive types
+directive @isAuthenticated on FIELD | FIELD_DEFINITION
+directive @hasRole(role: String) on FIELD | FIELD_DEFINITION
+
+# Interface
+# An object with an ID.
+interface Node {
+  # Globally unique identifier.
+  _id: ID!
+}
+
+interface PageInfo {
+  total: Int
+}
+
+# Information to aid in pagination.
+type PageInfoWithOffset implements PageInfo {
+  offset: Int
+  # Identifies the total count of items in the connection
+  total: Int
+  limit: Int
+}
+
+type PageInfoWithCursor implements PageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Identifies the total count of items in the connection
+  total: Int
+}

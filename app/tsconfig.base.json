@@ -1,0 +1,63 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@mp-workspace/data-access-constants": [
+        "libs/data-access-constants/src/index.ts"
+      ],
+      "@mp-workspace/proto": [
+        "libs/proto/src/index.ts"
+      ],
+      "@mp-workspace/ui-next-apollo-react-component": [
+        "libs/ui-next-apollo-react-component/src/index.ts"
+      ],
+      "@mp-workspace/ui-penguin-ui-material-ui-extension": [
+        "libs/ui-penguin-ui-material-ui-extension/src/index.ts"
+      ],
+      "@mp-workspace/util": [
+        "libs/util/src/index.ts"
+      ],
+      "@mp-workspace/util-apollo-cursor-style-pagination": [
+        "libs/util-apollo-cursor-style-pagination/src/index.ts"
+      ],
+      "@penguin-ui/material-ui-extension": [
+        "libs/ui-penguin-ui-material-ui-extension/src/index.ts"
+      ],
+      "@penguin-ui/react-social-sharing": [
+        "libs/ui-penguin-ui-react-social-sharing/src/index.ts"
+      ],
+      "@penguin-ui/react-time-ago": [
+        "libs/ui-penguin-ui-react-time-ago/src/index.ts"
+      ],
+      "@penguin-ui/reviews": [
+        "libs/ui-penguin-ui-reviews/src/index.ts"
+      ],
+      "@penguin-ui/scrollbar": [
+        "libs/ui-penguin-ui-scrollbar/src/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}

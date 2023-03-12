@@ -1,0 +1,8 @@
+{
+  "name": "ui-ga-auto-event-listener",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "react-ga": "^3.2.1"
+  }
+}
