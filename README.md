@@ -49,7 +49,7 @@ In this demo version, we build a simple version for integrated with Shopify.
 
 Here is our video
 
-[![SoLoyal Team - Solana hackathon 2023](assets/images/soloyal-bg.png)](https://www.youtube.com/playlist?list=PLKBnRuL2atAl3VzgdxpotEBLdNDKoZwWj)
+[![SoLoyal Team - Solana hackathon 2023](assets/images/soloyal-bg.png)](https://www.youtube.com/playlist?list=PLJ28CqSGybF5KXpC_74ENRm7Gn-kpJdax)
 
 
 ## What's next for this project
