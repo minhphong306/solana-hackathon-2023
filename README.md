@@ -1,15 +1,14 @@
-# SolPlay
+# SoLoyal
 
 ## Inspiration
-We are Solplay - a part of Starbots, a first-ever Robot battles NFT games in Solana.
+We are SoLoyal - is a next-generation loyalty platform built on Solana blockchain technology. Our platform uses blockchain technology to create a more transparent, cost-effective, and flexible loyalty program that benefits both businesses and customers. At the core of SoLoyal's platform is our NFT-based membership card system
 
-GameFi is one of the most interesting keywords for investors today. However, because of quick growthing, there are a lot of difficulty for investors NFT owners must make an initial (possibly quite large) account investment to purchase NFT and even can’t purchase it because of its scarcity .
+![Soloyal](./assets/images/soloyal-bg.png)
 
-In opposite, there are many investors don’t have time for their NFTs
+Our mission at SoLoyal is to revolutionize the loyalty platform industry by creating a platform that is easy to use, accessible to everyone, and capable of delivering real-world benefits to users. We believe that the Solana blockchain is the perfect foundation for this vision. Its high-speed, low-cost transactions enable us to offer a platform that is scalable and affordable, while NFTs provide us with a new way to create value for users.
 
-So a question came to our mind “Is there an easier way for players to access GameFi? How to maximize their investment based on NFTs? ".
-
-So we created an NFT Renting platform - SolPlay.
+Unlike traditional loyalty programs, SoLoyal's membership cards are represented as NFTs, or non-fungible tokens, on the Solana blockchain. Each membership card is unique and serves as a digital representation of a customer's loyalty status with a particular business. By using NFTs, SoLoyal is able to offer customers more control and flexibility over their loyalty rewards, while also reducing costs and increasing transparency for businesses.
+In the following sections of this whitepaper, we will explore SoLoyal's main features, roadmap, and team, and explain how our platform is poised to revolutionize the loyalty program industry.
 
 ## What is SolPlay?
 SolPlay is an NFT rental platform that connects NFT owners - who can earn from their idle NFT and NFT users who want to experience and access scarce NFTs.
