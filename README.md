@@ -29,19 +29,8 @@ The rental fee will be sent directly to the owner's wallet, minus platform fee. 
 
 ## Technical flow
 - System overview
-![System overview](assets/flow-charts/000-system-overview.drawio.png)
 
 - Merchant connect store flow
-![Listing flow](assets/flow-charts/001-listing-flow.drawio.png)
-
-- Me
-![Update info flow](assets/flow-charts/002-update-info-flow.drawio.png)
-
-- Rent flow
-![Rent flow](assets/flow-charts/003-rent-flow.drawio.png)
-
-- Cancel listing flow
-![Cancel listing flow](assets/flow-charts/004-cancel-listing-flow.drawio.png)
 
 
 ## Demo product
